@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% block body %}
+<section class="col-md-6 m-4">
+
+    {% for message in get_flashed_messages() %}
+    <h2>{{ message }}</h2>
+    {% endfor %}
+    <div class="container">
+    <form action="/add_place" method="post">
+        <label><b> Plats: </b> </label><input type="text" name="place"><br>
+        <button type="button" class="btn btn-secondary btn-sm">Submit</button>
+    </form>
+    </div>
+
+
+</section>
+{% endblock %}

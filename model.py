@@ -45,9 +45,32 @@ def alert_message(waiting):
         return " "
 
 def find_place(place):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('places1.db')
     c = conn.cursor()
     c.execute("SELECT* FROM places WHERE place=:place", {'place': place})
-    return c.fetchone()
+    our_place= c.fetchone()
+    conn.close()
+    return our_place
+
+def create_user(email, password):
+    con = sqlite3.connect('user1.db')
+    c = con.cursor()
+    c.execute("SELECT* FROM user WHERE email=:email AND password =:password",{'email':email, 'password':password})
+    data = c.fetchone()
+    if data == None:
+        c.execute("INSERT INTO user (email,password) VALUES (?,?)", (email, password))
+        con.commit()
+        con.close()
+        return 1
+    else:
+        con.close()
+        return 2
 
 
+def check_user(email, password):
+    con = sqlite3.connect('user1.db')
+    c = con.cursor()
+    c.execute("SELECT* FROM user WHERE email=:email AND password =:password", {'email': email, 'password': password})
+    data = c.fetchone()
+    con.close()
+    return data
