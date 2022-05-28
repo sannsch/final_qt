@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block body %}
+<section class="col-md-6">
+    {% for message in get_flashed_messages() %}
+    <h2>{{ message }}</h2>
+    {% endfor %}
+    <form action="/add_ticket" method="post">
+        <label><b> Ditt nummer: </b></label><input type="number" name="ticket_num" min ="1" max ="100"><br>
+        <input type="submit" value="Submit">
+    </form>
+</section>
+
+{% endblock %}
