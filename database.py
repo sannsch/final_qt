@@ -1,14 +1,21 @@
 import sqlite3
 
-conn = sqlite3.connect('database.db')
 
-c = conn.cursor()
+con = sqlite3.connect('user1.db')
+c = con.cursor()
+# c.execute('CREATE TABLE user(email text, password text)')
 
-#c.execute("""CREATE TABLE places (         place text                     )""")
-c.execute("INSERT INTO places VALUES ('ica')")
 
-#c.execute("SELECT* FROM places WHERE place
-#print(c.fetchall())
-conn.commit()
 
-conn.close()
+
+
+# c.execute("INSERT INTO places VALUES ('arbetsförmedligen')")
+
+# c.execute("INSERT INTO user (email,password) VALUES (?,?)", ('lisa', 'skittunge'))
+# con.commit()
+
+
+c.execute("SELECT* FROM user WHERE email=:email AND password =:password",{'email':'lisa', 'password':'skittunge'})
+print(c.fetchone())
+
+
